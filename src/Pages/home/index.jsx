@@ -1,22 +1,48 @@
 import React from 'react'
-import { Box, Text } from "@chakra-ui/react"
+import { Box, Text,Button, Image,SimpleGrid } from "@chakra-ui/react"
+import Header from '../../Components/Header'
+import {useNavigate} from "react-router-dom"
+import { ROUTER } from '../../Constant/router'
 
 function Home() {
+
+  const navigate = useNavigate()
   return (
     <div>
-        
-        {/* <Box w="100%" h="200px" bgGradient="linear(to-t, green.200, pink.500)" /> */}
+        <Header />   
 
-{/* <Box w="100%" h="200px" bgGradient="radial(gray.300, yellow.400, pink.200)" /> */}
+<SimpleGrid bg="gray.50" columns={{sm:2}} spacing="2" p="10" >
 
-<Text
-  bgGradient="linear(to-l, #7928CA, #FF0080)"
-  bgClip="text"
-  fontSize="6xl"
-  fontWeight="extrabold"
->
-    Home
-</Text>
+        <Box display="flex" flexDirection="column" justifyContent="flex-start" gap="16px">
+        <Text
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          bgClip="text"
+          fontSize="6xl"
+          fontWeight="extrabold"
+        >
+                 Welcome to Articles Devil  
+        </Text>
+        <Text
+          bgClip="text"
+          fontSize="2xl"
+          fontWeight="medium"
+          color="black"
+        >
+              Lorem ipsum dolor sit
+               amet consectetur adipisicing elit. Quam dolores
+                provident assumenda ex quo cupiditate voluptatum
+                , facere beatae obcaecati eius? Natus facilis officia
+                 exercitationem quas rerum hic culpa aspernatur esse.
+        </Text>
+         <Button size="lg"  alignSelf="flex-start" colorScheme='teal' onClick={()=>navigate(ROUTER.ARTICLES_CREATE)}>Get Started</Button>
+        </Box>
+        <Box>
+          <Image  src='https://cdni.iconscout.com/illustration/premium/thumb/blog-writer-working-on-article-5691583-4759515.png'></Image>
+        </Box>
+        </SimpleGrid>
+
+
+
     </div>
   )
 }

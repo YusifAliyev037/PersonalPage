@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Text } from "@chakra-ui/react"
 
-function Home() {
+function Favorit() {
   return (
     <div>
         
@@ -21,4 +21,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Favorit

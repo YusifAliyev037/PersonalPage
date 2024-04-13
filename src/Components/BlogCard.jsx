@@ -9,7 +9,9 @@ import {
     Heading,
     Card
   } from "@chakra-ui/react"
-function BlogCard() {
+
+function BlogCard({title, cover_url,desc, onReadMore}) {
+
   return (
     <div>
         <Card
@@ -20,22 +22,21 @@ function BlogCard() {
   <Image
     objectFit='cover'
     maxW={{ base: '100%', sm: '200px' }}
-    src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
-    alt='Caffe Latte'
+    src={cover_url}
+    alt={title}
   />
 
   <Stack>
     <CardBody>
-      <Heading size='md'>The perfect latte</Heading>
+      <Heading size='md'>{title}</Heading>
 
       <Text py='2'>
-        Caffè latte is a coffee beverage of Italian origin made with espresso
-        and steamed milk.
+      {desc}
       </Text>
     </CardBody>
 
     <CardFooter>
-      <Button variant='solid' colorScheme='teal'>
+      <Button variant='solid' colorScheme='teal' onClick={onReadMore}>
         Read More
       </Button>
     </CardFooter>

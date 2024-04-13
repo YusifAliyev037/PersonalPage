@@ -29,6 +29,9 @@ import { ROUTER } from '../Constant/router'
   <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.ABOUT)}>
     About
   </Button>
+  <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.FAVORIT)}>
+    Favorit
+  </Button>
   <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.FAQ)}>
     FAQ
   </Button> 

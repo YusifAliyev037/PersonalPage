@@ -9,6 +9,7 @@ import {
     Heading,
     Card
   } from "@chakra-ui/react"
+import { shortText } from '../Utils/shortText'
 
 function BlogCard({title, cover_url,desc, onReadMore}) {
 
@@ -31,7 +32,7 @@ function BlogCard({title, cover_url,desc, onReadMore}) {
       <Heading size='md'>{title}</Heading>
 
       <Text py='2'>
-      {desc}
+      {shortText(desc, 90)}
       </Text>
     </CardBody>
 

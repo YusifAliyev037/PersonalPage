@@ -1,5 +1,5 @@
-import React, {} from 'react'
-import { SimpleGrid, Box,Input,Spinner } from "@chakra-ui/react"
+import React, { useEffect, useState } from 'react'
+import { SimpleGrid, Box} from "@chakra-ui/react"
 import Header from '../../Components/Header'
 import BlogCard from '../../Components/BlogCard'
 import Breadcrumbs from '../../Components/Breadcrumb'
@@ -7,51 +7,52 @@ import { getBlogs } from '../../Services/articles'
 import {useNavigate} from "react-router-dom"
 import { useFetchData } from '../../Hooks/useFetchData'
 import Loading from '../Loading'
+import Searchbox from '../../Components/SearchBox/searchbox'
 
 
 function Articles() {
   const navigate = useNavigate()
+  const [searchData, setSearchData] = useState()
 
   const {data,loading} = useFetchData({
     requestFn:()=>getBlogs(),
   })
 
-  // const [data, setData] = useState();
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState();
 
+  useEffect(()=>{
 
+    setSearchData(data);
+  },[data])
 
-  // useEffect(()=>{
+  const handleSearch = (text) =>{
 
-  //   const fetchData = async () =>{
-  //     setLoading(true)
-  //     try{
-  //       const res = await getBlogs();
-  //       setData(res.data)
-  //     }catch(err){
-  //       setError(err)
-  //     }finally{
-  //       setLoading(false)
-  //     }
-  //   }
-  //   fetchData()
-  // },[])
+    if(!text.trim()){
+      setSearchData(data);
+      return
+    }
+    const filterData = searchData.filter((item)=>
+    new RegExp(text, "i").test(item.title)
+  );
+
+  setSearchData(filterData)
+    console.log("filterData", filterData);
+  }
+
   return (
     <div>
 
 
       <Header />
-      <Box  p={10}>
+      <Box  px={50}>
       <Breadcrumbs/>
-      <Input placeholder='Search'/>
+     <Searchbox onFocus={()=>setSearchData(data)}  onSearch={handleSearch} />
       </Box>
       {loading  ? (
       <Loading />
        ):( 
       <SimpleGrid columns={{sm: 2}} p="20" spacing="10">
-        {data
-        ?.filter((item, index) => index > 99)
+        {searchData
+        ?.filter((item, index) => item.id > 100)
         ?.map((item)=>(
         <BlogCard key={"blog-id" + item.id} {...item} onReadMore={()=>navigate("/articles/" + item.id)} 
         />

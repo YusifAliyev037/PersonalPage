@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import "./Styles/global.css"
 import { BrowserRouter } from "react-router-dom"
+import GlobalProvider from './Store/global/GlobalProvider.jsx'
 
 const colors = {
   brand: {
@@ -20,7 +21,9 @@ ReactDOM.createRoot(rootElement).render(
   
     <ChakraProvider theme={theme}>
       <BrowserRouter>
+      <GlobalProvider>
       <App />
+      </GlobalProvider>
       </BrowserRouter>
     </ChakraProvider>
   

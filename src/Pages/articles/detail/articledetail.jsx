@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from '../../../Components/Header'
-import { Box, Text,Image,SimpleGrid } from "@chakra-ui/react"
+import { Box, Text,Image,SimpleGrid,Button } from "@chakra-ui/react"
 import {useParams} from "react-router-dom"
 import { useFetchData } from '../../../Hooks/useFetchData'
 import { getBlogId } from '../../../Services/articles'
 import Loading from '../../Loading'
 import { converTime } from '../../../Utils/convertTime'
+import {AddIcon,MinusIcon} from "@chakra-ui/icons"
 
  function Articledetail() {
 
@@ -15,6 +16,8 @@ import { converTime } from '../../../Utils/convertTime'
     requestFn:()=>getBlogId(id),
     dependecy:[id]
   })
+
+  const isFav = true
 
   return (
     <>
@@ -50,8 +53,8 @@ import { converTime } from '../../../Utils/convertTime'
         >
               {data?.desc}
         </Text>
+       <Button alignSelf="flex-start" leftIcon={isFav ? <MinusIcon/> : <AddIcon/>} colorScheme={isFav ? "red" : "green"}>{isFav ? "Remove" : "Add"}Favorite</Button>
         </Box>
-       
         </SimpleGrid>
       )}
 

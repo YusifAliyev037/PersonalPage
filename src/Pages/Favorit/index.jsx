@@ -1,22 +1,36 @@
-import React from 'react'
-import { Box, Text } from "@chakra-ui/react"
+import React, {} from 'react'
+import { SimpleGrid, Box} from "@chakra-ui/react"
+import Header from '../../Components/Header'
+import BlogCard from '../../Components/BlogCard'
+import Breadcrumbs from '../../Components/Breadcrumb'
+import {useNavigate} from "react-router-dom"
+import { useGlobalStore } from '../../Store/global/GlobalProvider'
+
 
 function Favorit() {
+  const navigate = useNavigate()
+
+  const {state: {favorites}} = useGlobalStore()
+
   return (
     <div>
-        
-        {/* <Box w="100%" h="200px" bgGradient="linear(to-t, green.200, pink.500)" /> */}
 
-{/* <Box w="100%" h="200px" bgGradient="radial(gray.300, yellow.400, pink.200)" /> */}
 
-<Text
-  bgGradient="linear(to-l, #7928CA, #FF0080)"
-  bgClip="text"
-  fontSize="6xl"
-  fontWeight="extrabold"
->
-    Home
-</Text>
+      <Header />
+      <Box  px={50}>
+      <Breadcrumbs routes={["Favorites"]}/>
+      </Box>
+     
+      <SimpleGrid columns={{sm: 2}} p="20" spacing="10">
+        {favorites
+        ?.filter((item, index) => item.id > 100)
+        ?.map((item)=>(
+        <BlogCard key={"blog-id" + item.id} {...item} onReadMore={()=>navigate("/articles/" + item.id)} 
+        />
+        ))}
+   
+      </SimpleGrid>
+      
     </div>
   )
 }

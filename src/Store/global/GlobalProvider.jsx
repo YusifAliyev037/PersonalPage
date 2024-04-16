@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react'
+import { TYPES } from './type';
 
 
 
@@ -11,10 +12,11 @@ const INITIAL_STATE = {
 
 function reducer(state,action){
     switch(action.type){
-        case "TOGGLE_FAV":
+        case TYPES.TOGGLE_FAV:
+             return {...state, favorites:action.payload };
 
-
-        return
+        case TYPES.IS_LOADING:
+            return {...state, is_loading:action.payload }; 
 
         default:
             return state;  

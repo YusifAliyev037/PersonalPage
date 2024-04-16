@@ -7,21 +7,39 @@ import { getBlogId } from '../../../Services/articles'
 import Loading from '../../Loading'
 import { converTime } from '../../../Utils/convertTime'
 import {AddIcon,MinusIcon} from "@chakra-ui/icons"
+import { useGlobalStore } from '../../../Store/global/GlobalProvider'
+import { TYPES } from '../../../Store/global/type'
+import Breadcrumbs from '../../../Components/Breadcrumb'
 
  function Articledetail() {
 
   const {id} = useParams()
-   
+
+  const {state, dispatch} = useGlobalStore()
+  console.log(state.favorites);
+  
   const {data,loading} = useFetchData({
     requestFn:()=>getBlogId(id),
     dependecy:[id]
   })
 
-  const isFav = true
+  const isFav = state.favorites.find((item)=> item.id == id);
+  // console.log(isFav);
+  const handleToggleFav = ()=>{
+    if(isFav){
+      const filtevFav = state.favorites.filter((item)=> item ===  id)
+      dispatch({type:TYPES.TOGGLE_FAV, payload:filtevFav})
+      return
+    }
+    
+    dispatch({type:TYPES.TOGGLE_FAV, payload:[...state.favorites, data]})
+
+  }
 
   return (
     <>
       <Header />
+      <Breadcrumbs routes={["Articles", data?.title]}/>
       {loading ? (<Loading />): (
 
       <SimpleGrid bg="gray.50" columns={{sm:2}} spacing="2" p="10" >
@@ -53,7 +71,11 @@ import {AddIcon,MinusIcon} from "@chakra-ui/icons"
         >
               {data?.desc}
         </Text>
-       <Button alignSelf="flex-start" leftIcon={isFav ? <MinusIcon/> : <AddIcon/>} colorScheme={isFav ? "red" : "green"}>{isFav ? "Remove" : "Add"}Favorite</Button>
+       <Button 
+          onClick={handleToggleFav}
+          alignSelf="flex-start" 
+          leftIcon={isFav ? <MinusIcon/> : <AddIcon/>} 
+          colorScheme={isFav ? "red" : "green"}>{isFav ? "Remove" : "Add"}Favorite</Button>
         </Box>
         </SimpleGrid>
       )}

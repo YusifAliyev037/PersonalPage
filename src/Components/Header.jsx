@@ -1,10 +1,15 @@
 import React from 'react'
-import {Box,Stack,Button,Text} from '@chakra-ui/react'
+import {Box,Stack,Button,Text, Badge} from '@chakra-ui/react'
 import {useNavigate} from "react-router-dom"
 import { ROUTER } from '../Constant/router'
+import { useGlobalStore } from '../Store/global/GlobalProvider'
  function Header() {
 
     const navigate = useNavigate()
+
+    const {state} = useGlobalStore()
+
+    const favCount = state.favorites?.length
 
   return (
     <Box 
@@ -29,9 +34,10 @@ import { ROUTER } from '../Constant/router'
   <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.ABOUT)}>
     About
   </Button>
-  <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.FAVORIT)}>
+  {!!favCount && <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.FAVORIT)}>
     Favorit
-  </Button>
+    <Badge variant="solid" colorScheme='red'>{favCount}</Badge>
+  </Button>} 
   <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.FAQ)}>
     FAQ
   </Button> 

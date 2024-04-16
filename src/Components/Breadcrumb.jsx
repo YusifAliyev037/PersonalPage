@@ -9,17 +9,17 @@ import {
   } from "@chakra-ui/react"
   import {  ChevronRightIcon} from '@chakra-ui/icons'
 
-function Breadcrumbs() {
+function Breadcrumbs({routes}) {
   return (
     <div>
         <Breadcrumb py={4} px={10} spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
+          {routes?.map((routName) =>(
   <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Articles</BreadcrumbLink>
+    <BreadcrumbLink href='#'>{routName}</BreadcrumbLink>
   </BreadcrumbItem>
+          ))}
 
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Jsde yenilikler</BreadcrumbLink>
-  </BreadcrumbItem>
+
 
  
 </Breadcrumb>

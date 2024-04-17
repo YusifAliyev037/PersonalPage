@@ -5,7 +5,8 @@ export const ROUTER = {
     ARTICLES_CREATE:"/article-create",
     FAQ:"faq",
     FAVORIT:"/favorites",
-    ERROR: "*"
+    ERROR: "*",
+    SETTING: "/setting"
 
 
 }

@@ -1,6 +1,6 @@
 import React from 'react'
-import {Box,Stack,Button,Text, Badge} from '@chakra-ui/react'
-import {useNavigate} from "react-router-dom"
+import {Box,Stack,Button,Text, Badge,ButtonGroup} from '@chakra-ui/react'
+import {useNavigate,useLocation} from "react-router-dom"
 import { ROUTER } from '../Constant/router'
 import { useGlobalStore } from '../Store/global/GlobalProvider'
  function Header() {
@@ -8,6 +8,10 @@ import { useGlobalStore } from '../Store/global/GlobalProvider'
     const navigate = useNavigate()
 
     const {state} = useGlobalStore()
+
+    const {pathname} = useLocation()
+
+    const isActive = (p) => (pathname == p ? "orange" : "white")
 
     const favCount = state.favorites?.length
 
@@ -25,30 +29,40 @@ import { useGlobalStore } from '../Store/global/GlobalProvider'
         
 
         <Stack direction='row' spacing={4} align='center' as='ul'>
-  <Button  variant='ghost' color="white" onClick={()=>navigate(ROUTER.HOME)}>
+  <Button  variant='ghost' color={isActive(ROUTER.HOME)} onClick={()=>navigate(ROUTER.HOME)}>
     Home
   </Button>
-  <Button as='li'  variant='ghost' color="white" onClick={()=>navigate(ROUTER.ARTICLES)}>
+  <Button as='li'  variant='ghost' color={isActive(ROUTER.ARTICLES)} onClick={()=>navigate(ROUTER.ARTICLES)}>
     Article
   </Button>
-  <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.ABOUT)}>
+  <Button as='li' variant='ghost' color={isActive(ROUTER.ABOUT)} onClick={()=>navigate(ROUTER.ABOUT)}>
     About
   </Button>
-  {!!favCount && <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.FAVORIT)}>
+  {!!favCount && <Button as='li' variant='ghost'color={isActive(ROUTER.FAVORIT)} onClick={()=>navigate(ROUTER.FAVORIT)}>
     Favorit
     <Badge variant="solid" colorScheme='red'>{favCount}</Badge>
   </Button>} 
-  <Button as='li' variant='ghost' color="white" onClick={()=>navigate(ROUTER.FAQ)}>
+  <Button as='li' variant='ghost' color={isActive(ROUTER.FAQ)} onClick={()=>navigate(ROUTER.FAQ)}>
     FAQ
-  </Button> 
+  </Button>
+  </Stack> 
+  <ButtonGroup>
+
   <Button
   onClick={()=>navigate(ROUTER.ARTICLES_CREATE)}
-  as="li"
+  as="button"
   >
-    Create your article
+    Create 
   </Button> 
+  <Button
+  onClick={()=>navigate(ROUTER.SETTING)}
+  as="button"
+  >
+    Setting
+  </Button>
+  </ButtonGroup>
   
-</Stack>
+
         </Box>
   )
 }

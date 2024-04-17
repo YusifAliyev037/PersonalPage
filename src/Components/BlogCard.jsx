@@ -32,7 +32,7 @@ function BlogCard({title, cover_url,desc, onReadMore}) {
       <Heading size='md'>{title}</Heading>
 
       <Text py='2'>
-      {shortText(desc, 90)}
+      {shortText(desc, 80)}
       </Text>
     </CardBody>
 

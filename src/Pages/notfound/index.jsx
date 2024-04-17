@@ -1,7 +1,10 @@
 import React from 'react'
 import { Box, Text } from "@chakra-ui/react"
+import { useTitle } from '../../Hooks/useTitle'
 
 function NotFound() {
+  useTitle("NotFound | Blog app")
+
   return (
     <div>
         

@@ -5,10 +5,13 @@ import BlogCard from '../../Components/BlogCard'
 import Breadcrumbs from '../../Components/Breadcrumb'
 import {useNavigate} from "react-router-dom"
 import { useGlobalStore } from '../../Store/global/GlobalProvider'
+import { useTitle } from '../../Hooks/useTitle'
 
 
 function Favorit() {
   const navigate = useNavigate()
+  useTitle("Favorit | Blog app")
+
 
   const {state: {favorites}} = useGlobalStore()
 

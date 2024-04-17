@@ -8,9 +8,13 @@ import {
   Box
 } from '@chakra-ui/react'
 import Header from '../../Components/Header'
+import { useTitle } from '../../Hooks/useTitle'
 
 
 function Faq() {
+
+  useTitle("FAQ | Blog app")
+
   return (
     <div>
       <Header/> 

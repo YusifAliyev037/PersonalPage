@@ -3,8 +3,11 @@ import { Box, Text,Button, Image,SimpleGrid } from "@chakra-ui/react"
 import Header from '../../Components/Header'
 import {useNavigate} from "react-router-dom"
 import { ROUTER } from '../../Constant/router'
+import { useTitle } from '../../Hooks/useTitle'
 
 function Home() {
+  useTitle("Home | Blog app")
+
 
   const navigate = useNavigate()
   return (

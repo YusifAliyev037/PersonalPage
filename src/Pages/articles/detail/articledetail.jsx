@@ -10,10 +10,14 @@ import {AddIcon,MinusIcon} from "@chakra-ui/icons"
 import { useGlobalStore } from '../../../Store/global/GlobalProvider'
 import { TYPES } from '../../../Store/global/type'
 import Breadcrumbs from '../../../Components/Breadcrumb'
+import { useTitle } from '../../../Hooks/useTitle'
 
  function Articledetail() {
 
   const {id} = useParams()
+
+  useTitle(`Detail | Blog app`)
+
 
   const {state, dispatch} = useGlobalStore()
   console.log(state.favorites);

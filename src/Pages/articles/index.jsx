@@ -8,11 +8,15 @@ import {useNavigate} from "react-router-dom"
 import { useFetchData } from '../../Hooks/useFetchData'
 import Loading from '../Loading'
 import Searchbox from '../../Components/SearchBox/searchbox'
+import { useTitle } from '../../Hooks/useTitle'
 
 
 function Articles() {
   const navigate = useNavigate()
   const [searchData, setSearchData] = useState()
+
+  useTitle("Article | Blog app")
+
 
   const {data,loading} = useFetchData({
     requestFn:()=>getBlogs(),

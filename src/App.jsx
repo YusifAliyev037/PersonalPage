@@ -12,6 +12,7 @@ const Articles = lazy(()=> import("./Pages/articles"))
 const ArticleDetail = lazy(()=> import("./Pages/articles/detail/articledetail"))
 const ArticleCreate = lazy(()=> import("./Pages/articles/create/articlecreate"))
 const Notfound = lazy(()=> import("./Pages/notfound"))
+const Setting = lazy(() => import("./Pages/Setting/setting") )
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path={ROUTER.ARTICLES} element={<Articles/>} />
         <Route path={ROUTER.ARTICLES_CREATE} element={<ArticleCreate/>} />
         <Route path={ROUTER.ARTICLES + "/:id"}  element={<ArticleDetail/>} />
+        <Route path={ROUTER.SETTING} element={<Setting/>}/>
 
         <Route path={ROUTER.ERROR} element={<Notfound/>} />
       </Routes>
